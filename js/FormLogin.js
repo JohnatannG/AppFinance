@@ -27,7 +27,7 @@ const LoginForm = document.getElementById('LoginForm').addEventListener('submit'
             <p class='m-0 fs-5'>Dados inválidos, verifique.</p>
         </div>`
     } else {
-        window.location.href = 'http://127.0.0.1:5500/pages/Home.html';
+        window.location.href = 'https://app-finance-flame.vercel.app/pages/Home.html';
     }
 
 })

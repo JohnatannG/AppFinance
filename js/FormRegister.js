@@ -41,5 +41,5 @@ RegisterForm.addEventListener('submit', function(evento){
     };
 
     localStorage.setItem("registrationFormData", JSON.stringify(registrationFormData));
-    window.location.href = 'http://127.0.0.1:5500/pages/Home.html'
+    window.location.href = 'https://app-finance-flame.vercel.app/pages/Home.html'
 });
