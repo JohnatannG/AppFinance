@@ -66,11 +66,11 @@
                 </div>
                 <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
                     <p class="m-0 fs-4">Despesas</p>
-                    <p class="m-0 fs-3 fw-medium" id="totalDespesas">R$ 0</p>
+                    <p class="m-0 fs-3 fw-medium text-red" id="totalDespesas">R$ 0</p>
                 </div>
                 <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
                     <p class="m-0 fs-4">Receitas</p>
-                    <p class="m-0 fs-3 fw-medium">R$ 0</p>
+                    <p class="m-0 fs-3 fw-medium text-green" id="totalReceitas">R$ 0</p>
                 </div>
                 <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
                     <p class="m-0 fs-4">Metas</p>
@@ -84,7 +84,7 @@
                     <p class="m-0">Adicionar despesas</p>
                 </button>
 
-                <button class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4">
+                <button id="adicionarReceitas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4">
                     <img src="../assets/Add.svg" class="bg-green rounded-circle p-2" width="20">
                     <p class="m-0">Adicionar receitas</p>
                 </button>
@@ -111,23 +111,51 @@
         <div id="formAdicionarDespesas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary  border-items text-white p-4 rounded shadow-overlay w-50 animate-fade ">
 
             <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
-                <p class="m-0 fs-2 fw-semibold">Adicione sua despesas</p>
+                <p class="m-0 fs-2 fw-semibold">Adicione sua despesa</p>
                 <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas">
             </div>
 
             <form class="d-flex flex-column gap-4" id="modalFormDespesas">
                 <div class="d-flex flex-column gap-2">
                     <label for="" class="m-0 fs-5">Nome</label>
-                    <input type="text" name="" id="nomeDespesas" class="p-3 bg-items border-items rounded outline text-white" placeholder="Ex: Aluguel, Internet, etc">
+                    <input type="text" name="text" id="nomeDespesas" class="p-3 bg-items border-items rounded outline text-white" placeholder="Ex: Aluguel, Internet, etc">
                 </div>
                 <div class="d-flex flex-column gap-2">
                     <label for="" class="m-0 fs-5">valor</label>
-                    <input type="number" name="" id="valorDespesas" class="p-3 bg-items border-items rounded outline text-white"
+                    <input type="number" name="number" id="valorDespesas" class="p-3 bg-items border-items rounded outline text-white"
                     placeholder="R$ 0,00">
                 </div>
                 <div class="d-flex flex-column gap-2">
                     <label for="" class="m-0 fs-5">data</label>
-                    <input type="date" name="" id="dataDespesas" class="p-3 bg-items border-items rounded outline text-white">
+                    <input type="date" name="date" id="dataDespesas" class="p-3 bg-items border-items rounded outline text-white">
+                </div>
+
+                <button type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
+                    <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
+                </button>
+            </form>
+        </div>
+
+        <div id="formAdicionarReceitas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary  border-items text-white p-4 rounded shadow-overlay w-50 animate-fade ">
+
+            <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
+                <p class="m-0 fs-2 fw-semibold">Adicione sua receita</p>
+                <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalReceitas">
+            </div>
+
+            <form class="d-flex flex-column gap-4" id="modalFormReceitas">
+                <div class="d-flex flex-column gap-2">
+                    <label for="" class="m-0 fs-5">Nome</label>
+                    <input type="text" name="text" id="nomeReceitas" class="p-3 bg-items border-items rounded outline text-white" placeholder="Ex: Salário, vendas, etc">
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <label for="" class="m-0 fs-5">valor</label>
+                    <input type="number" name="number" id="valorReceitas" class="p-3 bg-items border-items rounded outline text-white"
+                    placeholder="R$ 0,00">
+                </div>
+                <div class="d-flex flex-column gap-2">
+                    <label for="" class="m-0 fs-5">data</label>
+                    <input type="date" name="date" id="dataReceitas" class="p-3 bg-items border-items rounded outline text-white">
                 </div>
 
                 <button type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
