@@ -14,14 +14,23 @@ if (!Array.isArray(Receitas)) {
   Receitas = [];
 }
 
+/*ABRIR MODAL*/
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.getElementById("Navbar");
   const toggleButton = document.getElementById("toggleNavbar");
 
   toggleButton.addEventListener("click", function () {
-    navbar.classList.toggle("open");
+    navbar.classList.add('open')
+    navbar.classList.remove("close");
   });
 });
+
+/*FECHAR MODAL*/
+const fecharNavbar = document.getElementById('fecharNavbar').addEventListener('click', function(){
+    const navbar = document.getElementById("Navbar");
+    navbar.classList.remove('open')
+    navbar.classList.add("close");
+})
 
 /*MOSTRAR SALDO NO CARD*/
 const cardSaldoAtual = document.getElementById("cardSaldoAtual");
