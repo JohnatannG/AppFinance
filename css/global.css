@@ -131,6 +131,9 @@ nav {
 #tableDespesas, #tableReceitas{
     width: 50%;
 }
+#fecharNavbar {
+    display: none;
+}
 
 @media screen and (max-width: 840px) {
   .w-register-login {
@@ -157,6 +160,9 @@ nav {
 }
   #Navbar.open {
     right: 0;
+}
+#fecharNavbar{
+    display: flex;
 }
   #Navbar.close {
     right: -250px;
