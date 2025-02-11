@@ -123,66 +123,73 @@ nav {
   border-bottom: 1px solid var(--green);
 }
 #toggleNavbar {
-  display: none;
+  display: none;  
 }
 #table3ReceitasDespesas{
-    display: flex;
+  display: flex;
 }
 #tableDespesas, #tableReceitas{
-    width: 50%;
+  width: 50%;
 }
 #fecharNavbar {
-    display: none;
+  display: none;
+}
+.border-table{
+  border: 1px solid var(--border-items);
+  padding: 1rem;
+  font-size: 1.3rem;
 }
 
+
+
 @media screen and (max-width: 840px) {
-  .w-register-login {
-    width: 100%;
+.w-register-login {
+  width: 100%;
 }
-  #toggleNavbar {
-    display: flex;
+#toggleNavbar {
+  display: flex;
 }
-  #Navbar {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 250px;
-    height: 100vh;
-    background: #212121;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
-    transition: right 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    padding: 20px;
-    margin-top: 0;
+#Navbar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background: #212121;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding: 20px;
+  margin-top: 0;
 }
-  #Navbar.open {
-    right: 0;
+#Navbar.open {
+  right: 0;
 }
 #fecharNavbar{
-    display: flex;
+  display: flex;
 }
-  #Navbar.close {
-    right: -250px;
+#Navbar.close {
+  right: -250px;
 }
-  .menu-icon {
-    position: fixed;
-    top: 100rem;
-    right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
+.menu-icon {
+  position: fixed;
+  top: 100rem;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
-  #NavbarList {
-    flex-direction: column;
+#NavbarList {
+  flex-direction: column;
 }
-  nav {
-    border: none;
+nav {
+  border: none;
 }
-  #table3ReceitasDespesas{
-    justify-content: center;
+#table3ReceitasDespesas{
+  justify-content: center;
 }
 #tableDespesas, #tableReceitas{
     width: 100%;
