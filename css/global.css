@@ -134,6 +134,13 @@ nav {
 #fecharNavbar {
   display: none;
 }
+
+#tableWidth{
+  width: 50%;
+}
+#GrapichWidth{
+  width: 48%;
+}
 .border-table{
   border: 1px solid var(--border-items);
   padding: 1rem;
@@ -195,6 +202,13 @@ nav {
     width: 100%;
 }
 }
+
+@media screen and (max-width: 990px) {
+  #tableWidth, #GrapichWidth{
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 1288px) {
   .justify-content-betweenn {
     justify-content: center;

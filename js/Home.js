@@ -99,6 +99,7 @@ modalFormDespesas.addEventListener("submit", function (evento) {
   modalFormDespesas.reset();
   mostrarSaldoDespesas();
   dadosNaTabelaDespesas();
+  saldoAtualizado();
 }); 
 
 
@@ -152,7 +153,7 @@ modalFormReceitas.addEventListener("submit", function (evento) {
 
   modalFormReceitas.reset();
   mostrarSaldoReceitas();
-  saldoAtualAtualizadoReceitas();
+  saldoAtualizado()
   dadosNaTabelaReceitas()
 });
 
@@ -164,29 +165,26 @@ function mostrarSaldoReceitas() {
 }
 
 
-function saldoAtualAtualizadoReceitas(){
+function saldoAtualizado() {
   const valorFormReceitas = JSON.parse(localStorage.getItem(`valorFormReceitas_${userEmail}`)) || 0;
-  let valorAtualizado = registrationFormData.saldoUser + valorFormReceitas
-  
-  const saldoFormatado = valorAtualizado.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
+  const valorFormDespesas = JSON.parse(localStorage.getItem(`valorFormDespesas_${userEmail}`)) || 0;
+
+  let valorAtualizado = registrationFormData.saldoUser + valorFormReceitas - valorFormDespesas;
+
+  localStorage.setItem(`saldoAtualizado_${userEmail}`, JSON.stringify(valorAtualizado));
+
+  const saldoFormatado = valorAtualizado.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
   cardSaldoAtual.innerText = `${saldoFormatado}`;
 }
 
-function saldoAtualAtualizadoDespesas(){
-  const valorFormDespesas = JSON.parse(localStorage.getItem(`valorFormDespesas_${userEmail}`)) || 0;
-  let valorAtualizado = registrationFormData.saldoUser - valorFormDespesas
-  
-  const saldoFormatado = valorAtualizado.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-  cardSaldoAtual.innerText = `${saldoFormatado}`;
-}
 
 window.addEventListener("load", () => {
-  saldoAtualAtualizadoReceitas();
-  mostrarSaldoReceitas();
+  saldoAtualizado();
   mostrarSaldoDespesas();
-  saldoAtualAtualizadoDespesas();
-  dadosNaTabelaDespesas();
+  mostrarSaldoReceitas();
   dadosNaTabelaReceitas();
+  dadosNaTabelaDespesas();
+
 });
 
 function dadosNaTabelaDespesas() {
@@ -206,9 +204,10 @@ function dadosNaTabelaDespesas() {
     tdNome.classList.add("border-table");
     tdDescricao.classList.add("border-table");
     tdValor.classList.add("border-table");
+    tdValor.classList.add("text-red");
 
     tdNome.textContent = despesa.nomeDespesas || "Nome não informado";
-    tdValor.textContent = despesa.valorDespesas ? `R$ ${despesa.valorDespesas}` : "Valor não informado";
+    tdValor.textContent = despesa.valorDespesas.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${despesa.valorDespesas.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
     tdDescricao.textContent = despesa.dataDespesas || "Sem descrição";
 
     tr.append(tdNome, tdDescricao, tdValor);
@@ -233,12 +232,40 @@ function dadosNaTabelaReceitas() {
     tdNome.classList.add("border-table");
     tdDescricao.classList.add("border-table");
     tdValor.classList.add("border-table");
+    tdValor.classList.add("text-green");
 
     tdNome.innerHTML = receita.nomeReceitas || "Nome não informado";
-    tdValor.innerHTML = receita.valorReceitas ? `R$ ${receita.valorReceitas}` : "Valor não informado";
+    tdValor.innerHTML = receita.valorReceitas.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${receita.valorReceitas.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
     tdDescricao.innerHTML = receita.dataReceitas || "Sem descrição";
 
     tr.append(tdNome, tdDescricao, tdValor);
     tBodyReceitas.append(tr);
   });
 }
+
+var ctx = document.getElementsByClassName('chart')
+const valoresDespesas = Despesas.map(despesa => despesa.valorDespesas);
+const valoresReceitas = Receitas.map(receita => receita.valorReceitas);
+
+var chartGraph = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov',
+      'Dez'],
+    datasets: [{
+      label: 'Despesas',
+      data: valoresDespesas,
+      borderWidth: 2,
+      borderColor: '#b91035',
+      backgroundColor: '#b91035'
+    },
+    {
+      label: 'Receitas',
+      data: valoresReceitas,
+      borderWidth: 2,
+      borderColor: '#10b981',
+      backgroundColor: '#10b981'
+    }
+  ]
+  },
+});

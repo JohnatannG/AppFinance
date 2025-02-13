@@ -25,7 +25,10 @@
 
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="shortcut icon" href="../assets/Logo.png" type="image/x-icon" />
-    <script src="../js/Home.js" defer></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="../js/Home.js" defer></script>
+
     <title>Finance</title>
   </head>
   <body>
@@ -42,27 +45,27 @@
         </button>
       </div>
 
-      <nav id="Navbar" class="pb-3 d-flex  gap-5">
+      <nav id="Navbar" class="pb-3 d-flex gap-5">
 
         <button id="fecharNavbar" class="bg-transparent">
           <img src="../assets/X.svg" width="30" />
         </button>
 
         <div id="NavbarList" class="d-flex gap-5">
-          <a href="#" class="d-flex align-items-center gap-3 nav-active">
-            <img src="../assets/Home.svg" width="16" />
+          <a href="/pages/Home.html" class="d-flex align-items-center gap-3 nav-active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
             <p class="m-0 fs-4 fw-medium">Dashboard</p>
           </a>
-          <a href="#" class="d-flex align-items-center gap-3">
-            <img src="../assets/Despesas.svg" width="16" />
+          <a href="/pages/Despesas.html" class="d-flex align-items-center gap-3 " >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
             <p class="m-0 fs-4 text-white fw-medium">Despesas</p>
           </a>
           <a href="#" class="d-flex align-items-center gap-3">
-            <img src="../assets/Receitas.svg" width="16" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             <p class="m-0 fs-4 text-white fw-medium">Receitas</p>
           </a>
           <a href="#" class="d-flex align-items-center gap-3">
-            <img src="../assets/Metas.svg" width="16" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
             <p class="m-0 fs-4 text-white fw-medium">Metas</p>
           </a>
         </div>
@@ -277,57 +280,50 @@
         </form>
       </div>
 
-      <div id="table3ReceitasDespesas" class="flex-column mt-4">
+      <div id="table3ReceitasDespesas" class="w-100 h-auto d-flex flex-wrap justify-content-between mt-4 gap-4">
         
-        <div id="tableDespesas" class="bg-items border-items rounded">
-          <h2
-            class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top"
-          >
-            3 Últimas Despesas
-          </h2>
-          <table class="w-100 text-white text-center">
-            <thead class="table-primary border">
-              <tr>
-                <th class="p-3 fs-5 text-white fw-medium border-items">Nome</th>
-                <th class="p-3 fs-5 text-white fw-medium border-items">
-                  Descrição
-                </th>
-                <th class="p-3 fs-5 text-white fw-medium border-items">
-                  Valor
-                </th>
-              </tr>
-            </thead>
-            <tbody id="tBodyDespesas">
+        <div id="tableWidth" class="d-flex flex-wrap flex-column gap-4">
 
-            </tbody>
-          </table>
+          <div id="tableDespesas" class="bg-items border-items rounded w-100">
+            <h2 class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top">3 Últimas Despesas</h2>
+            <table class="w-100 text-white text-center">
+              <thead class="table-primary border">
+                <tr>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Descrição</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tBodyDespesas">
+              </tbody>
+            </table>
+          </div>
+
+          <div id="tableReceitas" class="bg-items border-items rounded w-100">
+            <h2 class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top">3 Últimas Receitas</h2>
+            <table class="w-100 text-white text-center">
+              <thead class="table-primary border">
+                <tr>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Descrição</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tBodyReceitas">
+              </tbody>
+            </table>
+          </div>
+
         </div>
-        ´
 
-        <div id="tableReceitas" class="bg-items border-items rounded">
-          <h2
-            class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top"
-          >
-            3 Últimas Receitas
-          </h2>
-          <table class="w-100 text-white text-center">
-            <thead class="table-primary border">
-              <tr>
-                <th class="p-3 fs-5 text-white fw-medium border-items">Nome</th>
-                <th class="p-3 fs-5 text-white fw-medium border-items">
-                  Descrição
-                </th>
-                <th class="p-3 fs-5 text-white fw-medium border-items">
-                  Valor
-                </th>
-              </tr>
-            </thead>
-            <tbody id="tBodyReceitas">
-
-            </tbody>
-          </table>
+        <div id="GrapichWidth" class="h-100 border-items rounded">
+          <h2 class="m-0 text-white bg-items p-4">Suas finanças em gráficos</h2>
+          
+          <canvas class="w-49 h-100 chart bg-items p-2"></canvas>
         </div>
-      </div>
+
+      </div> 
+
     </div>
     
   </body>
