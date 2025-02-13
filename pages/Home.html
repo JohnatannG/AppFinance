@@ -33,8 +33,9 @@
   </head>
   <body>
 
-    <div class="bg-primary container-xxl vh-100 v-100 px-4">
-      <div class="d-flex align-items-center justify-content-between">
+    <main class="bg-primary container-xxl vh-100 v-100 px-4">
+      
+      <header class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-3 mt-4">
           <img src="../assets/Logo.png" width="40" height="40" />
           <h1 class="m-0 text-white fw-bold">Finance</h1>
@@ -43,7 +44,7 @@
         <button id="toggleNavbar" class="bg-primary">
           <img src="../assets/Menu.svg" width="30" />
         </button>
-      </div>
+      </header>
 
       <nav id="Navbar" class="pb-3 d-flex gap-5">
 
@@ -86,79 +87,53 @@
         </div>
       </nav>
 
-      <div class="mt-5 d-flex flex-wrap gap-4 justify-content-betweenn">
+      <section class="mt-5 d-flex flex-wrap gap-4 justify-content-betweenn">
         <div class="d-flex flex-wrap justify-content-center gap-4">
-          <div
-            class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded"
-          >
+
+          <div class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
             <p class="m-0 fs-4">Saldo Atual</p>
             <p class="m-0 fs-3 fw-medium" id="cardSaldoAtual">R$ 0</p>
           </div>
-          <div
-            id="cardSaldoAtual"
-            class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded"
-          >
+
+          <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
             <p class="m-0 fs-4">Despesas</p>
             <p class="m-0 fs-3 fw-medium text-red" id="totalDespesas">R$ 0</p>
           </div>
-          <div
-            id="cardSaldoAtual"
-            class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded"
-          >
+
+          <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
             <p class="m-0 fs-4">Receitas</p>
             <p class="m-0 fs-3 fw-medium text-green" id="totalReceitas">R$ 0</p>
           </div>
-          <div
-            id="cardSaldoAtual"
-            class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded"
-          >
-            <p class="m-0 fs-4">Metas</p>
-            <p class="m-0 fs-3 fw-medium">% 0</p>
+
+          <div id="cardSaldoAtual" class="bg-items w-card h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
+            <p class="m-0 fs-4">Qtd. Metas</p>
+            <p id="qtdMetas" class="m-0 fs-3 fw-medium">0</p>
           </div>
+          
         </div>
 
         <div class="w-fit d-flex flex-wrap gap-4 justify-content-center">
-          <button
-            id="adicionarDespesas"
-            class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4"
-          >
-            <img
-              src="../assets/Add.svg"
-              class="bg-green rounded-circle p-2"
-              width="20"
-            />
+
+          <button id="adicionarDespesas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4">
+            <img src="../assets/Add.svg" class="bg-green rounded-circle p-2" width="20"/>
             <p class="m-0">Adicionar despesas</p>
           </button>
 
-          <button
-            id="adicionarReceitas"
-            class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4"
-          >
-            <img
-              src="../assets/Add.svg"
-              class="bg-green rounded-circle p-2"
-              width="20"
-            />
+          <button id="adicionarReceitas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4">
+            <img src="../assets/Add.svg" class="bg-green rounded-circle p-2" width="20"/>
             <p class="m-0">Adicionar receitas</p>
           </button>
 
-          <button
-            class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4"
-          >
-            <img
-              src="../assets/Add.svg"
-              class="bg-green rounded-circle p-2"
-              width="20"
-            />
+          <button id="adicionarMetas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded-pill text-white p-3 px-4">
+            <img src="../assets/Add.svg" class="bg-green rounded-circle p-2" width="20"/>
             <p class="m-0">Adicionar metas</p>
           </button>
-        </div>
-      </div>
 
-      <div
-        class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-white p-4 rounded shadow-overlay"
-        id="logOutModal"
-      >
+        </div>
+      </section>
+
+      <section id="logOutModal" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-white p-4 rounded shadow-overlay">
+
         <p class="m-0 fs-3">Tem certeza que deseja sair?</p>
         <div class="d-flex justify-content-center gap-2 mt-4">
           <button class="bg-transparent border py-3 px-5 rounded">
@@ -168,26 +143,20 @@
             <p class="m-0 fs-4" id="modalCancelar">Cancelar</p>
           </button>
         </div>
-      </div>
 
-      <div
-        id="formAdicionarDespesas"
-        class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade"
-      >
-        <div
-          class="tittleDespesas mb-5 d-flex align-items-center justify-content-between"
-        >
+      </section>
+
+      <section id="formAdicionarDespesas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+        <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
           <p class="m-0 fs-2 fw-semibold">Adicione sua despesa</p>
-          <img
-            src="../assets/X.svg"
-            class="cursor-pointer"
-            id="fecharModalDespesas"
-          />
+          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas"/>
         </div>
 
         <form class="d-flex flex-column gap-4" id="modalFormDespesas">
+          
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">Nome</label>
+            <label class="m-0 fs-5">Nome</label>
             <input
               type="text"
               name="text"
@@ -196,8 +165,9 @@
               placeholder="Ex: Aluguel, Internet, etc"
             />
           </div>
+
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">valor</label>
+            <label class="m-0 fs-5">valor</label>
             <input
               type="number"
               name="number"
@@ -206,8 +176,9 @@
               placeholder="R$ 0,00"
             />
           </div>
+
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">data</label>
+            <label class="m-0 fs-5">data</label>
             <input
               type="date"
               name="date"
@@ -216,33 +187,23 @@
             />
           </div>
 
-          <button
-            type="submit"
-            class="bg-green px-4 py-3 w-fit border border-0 rounded"
-          >
+          <button type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
             <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
           </button>
         </form>
-      </div>
+      </section>
 
-      <div
-        id="formAdicionarReceitas"
-        class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade"
-      >
-        <div
-          class="tittleDespesas mb-5 d-flex align-items-center justify-content-between"
-        >
+      <section id="formAdicionarReceitas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+        <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
           <p class="m-0 fs-2 fw-semibold">Adicione sua receita</p>
-          <img
-            src="../assets/X.svg"
-            class="cursor-pointer"
-            id="fecharModalReceitas"
-          />
+          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalReceitas"/>
         </div>
 
         <form class="d-flex flex-column gap-4" id="modalFormReceitas">
+
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">Nome</label>
+            <label class="m-0 fs-5">Nome</label>
             <input
               type="text"
               name="text"
@@ -251,8 +212,9 @@
               placeholder="Ex: Salário, vendas, etc"
             />
           </div>
+
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">valor</label>
+            <label class="m-0 fs-5">valor</label>
             <input
               type="number"
               name="number"
@@ -261,8 +223,9 @@
               placeholder="R$ 0,00"
             />
           </div>
+
           <div class="d-flex flex-column gap-2">
-            <label for="" class="m-0 fs-5">data</label>
+            <label class="m-0 fs-5">data</label>
             <input
               type="date"
               name="date"
@@ -271,16 +234,63 @@
             />
           </div>
 
-          <button
-            type="submit"
-            class="bg-green px-4 py-3 w-fit border border-0 rounded"
-          >
+          <button type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
             <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
           </button>
-        </form>
-      </div>
 
-      <div id="table3ReceitasDespesas" class="w-100 h-auto d-flex flex-wrap justify-content-between mt-4 gap-4">
+        </form>
+      </section>
+
+      <section id="formAdicionarMetas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+        <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
+          <p class="m-0 fs-2 fw-semibold">Adicione sua meta</p>
+          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalMetas"/>
+        </div>
+
+        <form class="d-flex flex-column gap-4" id="modalFormMetas">
+
+          <div class="d-flex flex-column gap-2">
+            <label class="m-0 fs-5">Nome</label>
+            <input
+              type="text"
+              name="text"
+              id="nomeMetas"
+              class="p-3 bg-items border-items rounded outline text-white"
+              placeholder="Ex: Carro, Viagem, etc"
+            />
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <label class="m-0 fs-5">Objetivo</label>
+            <input
+              type="number"
+              name="number"
+              id="valorObjetivo"
+              class="p-3 bg-items border-items rounded outline text-white"
+              placeholder="Ex: R$ 5000,00"
+            />
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <label class="m-0 fs-5">Investido</label>
+            <input
+              type="number"
+              name="number"
+              id="valorInvestido"
+              class="p-3 bg-items border-items rounded outline text-white"
+              placeholder="Ex: R$ 2500,00"
+            />
+          </div>
+
+          <button
+            type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
+            <p class="m-0 fs-5 fw-medium text-white">Adicionar</p>
+          </button>
+        </form>
+      </section>
+
+      <section id="table3ReceitasDespesas" class="w-100 h-auto d-flex flex-wrap justify-content-between mt-4 gap-4">
         
         <div id="tableWidth" class="d-flex flex-wrap flex-column gap-4">
 
@@ -316,15 +326,30 @@
 
         </div>
 
-        <div id="GrapichWidth" class="h-100 border-items rounded">
-          <h2 class="m-0 text-white bg-items p-4">Suas finanças em gráficos</h2>
-          
-          <canvas class="w-49 h-100 chart bg-items p-2"></canvas>
+        <div id="GrapichWidth" class="bg-items w-49 h-auto border-items rounded">
+          <h2 class="m-0 text-white p-4 fs-2">Suas finanças em gráficos</h2>
+          <canvas class="chart bg-items p-2"></canvas>
         </div>
 
-      </div> 
+      </section> 
 
-    </div>
+      <section class="bg-items text-white border-items rounded mt-4">
+        <table class="bg-items rounded w-100 text-center">
+          <h2 class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top">3 Últimas Metas</h2>
+          <thead class="table-primary border">
+            <tr>
+              <th class="p-3 fs-5 text-white fw-semibold border-items">Nome da meta</th>
+              <th class="p-3 fs-5 text-white fw-semibold border-items">Objetivo R$</th>
+              <th class="p-3 fs-5 text-white fw-semibold border-items">Valor investido</th>
+            </tr>
+          </thead>
+          <tbody id="tBodyMetas">
+            
+          </tbody>
+        </table>
+      </section>
+
+    </main>
     
   </body>
 </html>

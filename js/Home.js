@@ -3,6 +3,21 @@ const userEmail = registrationFormData.emailUser;
 
 let Despesas = JSON.parse(localStorage.getItem(`FormDespesas_${userEmail}`)) || [];
 let Receitas = JSON.parse(localStorage.getItem(`FormReceitas_${userEmail}`)) || [];
+let Metas = JSON.parse(localStorage.getItem(`FormMetas_${userEmail}`)) || [];
+
+const qtdMetas = document.getElementById('qtdMetas');
+const LogOut = document.getElementById("LogOut");
+const fecharModalDespesas = document.getElementById("fecharModalDespesas");
+const modalFormDespesas = document.getElementById("modalFormDespesas");
+
+const modalFormReceitas = document.getElementById("modalFormReceitas");
+
+const fecharModalMetas = document.getElementById("fecharModalMetas");
+const modalFormMetas = document.getElementById("modalFormMetas");
+
+var ctx = document.getElementsByClassName('chart')
+const valoresDespesas = Despesas.map(despesa => despesa.valorDespesas);
+const valoresReceitas = Receitas.map(receita => receita.valorReceitas);
 
 if (!Array.isArray(Despesas)) {
   Despesas = [];
@@ -12,7 +27,26 @@ if (!Array.isArray(Receitas)) {
   Receitas = [];
 }
 
-/*ABRIR MODAL*/
+if (!Array.isArray(Metas)) {
+  Metas = [];
+}
+
+window.addEventListener("load", () => {
+  saldoAtualizado();
+  mostrarSaldoDespesas();
+  mostrarSaldoReceitas();
+  dadosNaTabelaReceitas();
+  dadosNaTabelaDespesas();
+  dadosNaTabelaMetas();
+  mostrarQuantidadeDeMetas()
+});
+
+/*MOSTRAR SALDO NO CARD*/
+const cardSaldoAtual = document.getElementById("cardSaldoAtual");
+const saldoFormatado = registrationFormData.saldoUser.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
+cardSaldoAtual.innerText = `${saldoFormatado}`;
+
+/*ABRIR MODAL SIDEBAR MOBILE*/
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.getElementById("Navbar");
   const toggleButton = document.getElementById("toggleNavbar");
@@ -23,23 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-/*FECHAR MODAL*/
+/*FECHAR MODAL SIDEBAR MOBILE*/
 const fecharNavbar = document.getElementById('fecharNavbar').addEventListener('click', function(){
     const navbar = document.getElementById("Navbar");
     navbar.classList.remove('open')
     navbar.classList.add("close");
-})
+});
 
+function mostrarQuantidadeDeMetas(){
+  qtdMetas.textContent = `${Metas.length}`
+}
 
-/*MOSTRAR SALDO NO CARD*/
-const cardSaldoAtual = document.getElementById("cardSaldoAtual");
-const saldoFormatado = registrationFormData.saldoUser.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-cardSaldoAtual.innerText = `${saldoFormatado}`;
-
-
-/*SAIR DA CONTA*/
-const LogOut = document.getElementById("LogOut");
 LogOut.addEventListener("click", function () {
   const logOutModal = document.getElementById("logOutModal");
   logOutModal.classList.remove("d-none");
@@ -63,9 +91,7 @@ const adicionarDespesas = document.getElementById("adicionarDespesas").addEventL
   formAdicionarDespesas.classList.add("d-flex");
 });
 
-
 /*BUTTON FECHAR MODAL ADICIONAR DESPESAS*/
-const fecharModalDespesas = document.getElementById("fecharModalDespesas");
 fecharModalDespesas.addEventListener("click", function () {
   const formAdicionarDespesas = document.getElementById("formAdicionarDespesas");
 
@@ -73,9 +99,7 @@ fecharModalDespesas.addEventListener("click", function () {
   formAdicionarDespesas.classList.add("d-none");
 });
 
-
 /*MODAL ADICIONAR DESPESAS*/
-const modalFormDespesas = document.getElementById("modalFormDespesas");
 modalFormDespesas.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
@@ -102,7 +126,6 @@ modalFormDespesas.addEventListener("submit", function (evento) {
   saldoAtualizado();
 }); 
 
-
 /*MOSTRAR VALOR NO CARD DESPESA*/
 function mostrarSaldoDespesas() {
   const valorFormDespesas = JSON.parse(
@@ -116,6 +139,8 @@ function mostrarSaldoDespesas() {
   })}`;
 }
 
+
+/*BUTTON ABRIR MODAL ADICIONAR RECEITAS*/
 const adicionarReceitas = document.getElementById("adicionarReceitas").addEventListener("click", function () {
   const formAdicionarReceitas = document.getElementById("formAdicionarReceitas");
 
@@ -123,6 +148,7 @@ const adicionarReceitas = document.getElementById("adicionarReceitas").addEventL
   formAdicionarReceitas.classList.add("d-flex");
 });
 
+/*BUTTON FECHAR MODAL ADICIONAR RECEITAS*/
 const fecharModalReceitas = document.getElementById("fecharModalReceitas").addEventListener("click", function () {
   const formAdicionarReceitas = document.getElementById("formAdicionarReceitas");
 
@@ -130,7 +156,7 @@ const fecharModalReceitas = document.getElementById("fecharModalReceitas").addEv
   formAdicionarReceitas.classList.add("d-none");
 });
 
-const modalFormReceitas = document.getElementById("modalFormReceitas");
+/*MODAL ADICIONAR RECEITAS*/
 modalFormReceitas.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
@@ -157,12 +183,44 @@ modalFormReceitas.addEventListener("submit", function (evento) {
   dadosNaTabelaReceitas()
 });
 
-function mostrarSaldoReceitas() {
-  const valorFormReceitas = JSON.parse(localStorage.getItem(`valorFormReceitas_${userEmail}`)) || 0;
-  const totalReceitas = document.getElementById("totalReceitas");
 
-  totalReceitas.textContent = `${valorFormReceitas.toLocaleString("pt-br", {style: "currency", currency: "BRL",})}`;
-}
+/*BUTTON ABRIR MODAL ADICIONAR METAS*/
+const adicionarMetas = document.getElementById("adicionarMetas").addEventListener("click", function () {
+  const formAdicionarMetas = document.getElementById("formAdicionarMetas");
+  formAdicionarMetas.classList.remove("d-none");
+  formAdicionarMetas.classList.add("d-flex");
+});
+
+/*BUTTON FECHAR MODAL ADICIONAR METAS*/
+fecharModalMetas.addEventListener("click", function () {
+  const formAdicionarMetas = document.getElementById("formAdicionarMetas");
+
+  formAdicionarMetas.classList.remove("d-flex");
+  formAdicionarMetas.classList.add("d-none");
+});
+
+/*MODAL ADICIONAR METAS*/
+modalFormMetas.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+
+  const nomeMetas = document.getElementById("nomeMetas").value;
+  const valorObjetivo = Number(document.getElementById("valorObjetivo").value);
+  const valorInvestido = Number(document.getElementById("valorInvestido").value);
+
+  const dadosMetas = {
+    nomeMetas: nomeMetas,
+    valorObjetivo: valorObjetivo,
+    valorInvestido: valorInvestido,
+  };
+
+  Metas.push(dadosMetas);
+
+  localStorage.setItem(`FormMetas_${userEmail}`, JSON.stringify(Metas));
+
+  modalFormMetas.reset();
+  dadosNaTabelaMetas();
+  mostrarQuantidadeDeMetas();
+}); 
 
 
 function saldoAtualizado() {
@@ -177,15 +235,12 @@ function saldoAtualizado() {
   cardSaldoAtual.innerText = `${saldoFormatado}`;
 }
 
+function mostrarSaldoReceitas() {
+  const valorFormReceitas = JSON.parse(localStorage.getItem(`valorFormReceitas_${userEmail}`)) || 0;
+  const totalReceitas = document.getElementById("totalReceitas");
 
-window.addEventListener("load", () => {
-  saldoAtualizado();
-  mostrarSaldoDespesas();
-  mostrarSaldoReceitas();
-  dadosNaTabelaReceitas();
-  dadosNaTabelaDespesas();
-
-});
+  totalReceitas.textContent = `${valorFormReceitas.toLocaleString("pt-br", {style: "currency", currency: "BRL",})}`;
+}
 
 function dadosNaTabelaDespesas() {
   const tBodyDespesas = document.getElementById("tBodyDespesas");
@@ -243,10 +298,6 @@ function dadosNaTabelaReceitas() {
   });
 }
 
-var ctx = document.getElementsByClassName('chart')
-const valoresDespesas = Despesas.map(despesa => despesa.valorDespesas);
-const valoresReceitas = Receitas.map(receita => receita.valorReceitas);
-
 var chartGraph = new Chart(ctx, {
   type: 'line',
   data: {
@@ -269,3 +320,31 @@ var chartGraph = new Chart(ctx, {
   ]
   },
 });
+
+function dadosNaTabelaMetas() {
+  const tBodyMetas = document.getElementById("tBodyMetas");
+  const dadosMetas = JSON.parse(localStorage.getItem(`FormMetas_${userEmail}`)) || [];
+  const ultimasMetas = dadosMetas.slice(-3);
+
+  tBodyMetas.innerHTML = "";
+  
+  ultimasMetas.forEach((metas) => {
+    const tr = document.createElement("tr");
+
+    const tdNome = document.createElement("td");
+    const tdObjetivo = document.createElement("td");
+    const tdValorInvestido = document.createElement("td");
+
+    tdNome.classList.add("border-table");
+    tdObjetivo.classList.add("border-table");
+    tdValorInvestido.classList.add("border-table");
+    tdValorInvestido.classList.add("text-green");
+
+    tdNome.innerHTML = metas.nomeMetas || "Nome não informado";
+    tdObjetivo.innerHTML = metas.valorObjetivo.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${metas.valorObjetivo.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
+    tdValorInvestido.innerHTML = metas.valorInvestido.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${metas.valorInvestido.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
+
+    tr.append(tdNome, tdObjetivo, tdValorInvestido);
+    tBodyMetas.append(tr);
+  });
+}

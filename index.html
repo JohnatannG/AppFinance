@@ -19,70 +19,66 @@
 </head>
 <body>
 
-    <div class="bg-primary container-xxl vh-100 v-100 animate-fade">
+    <main class="bg-primary container-xxl vh-100 v-100 animate-fade">
 
-        <div class="d-flex align-items-center gap-3 p-3">
+        <header class="d-flex align-items-center gap-3 p-3">
             <img src="assets/Logo.png" width="40" height="40"/>
             <h1 class="m-0 text-white fw-bold">Finance</h1>
-        </div>
+        </header>
 
-        <div class="mt-2 p-4 w-register-login m-auto ">
+        <section class="mt-2 p-4 w-register-login m-auto ">
             <p class="m-0 text-lightgray fs-5">Já tem uma conta? <a href="pages/Login.html">Faça login</a></p>
 
-            <div class="bg-items mt-4 padding-2 rounded border-items">
-                <form action="" class="w-100 d-flex flex-column gap2" id="RegisterForm">
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="text"
-                        name="nameUser"
-                        id="nameUser"
-                        placeholder="Nome"
-                    />
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="email"
-                        name="emailUser"
-                        id="emailUser"
-                        placeholder="Email"
-                    />
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="number"
-                        name="saldoUser"
-                        id="saldoUser"
-                        placeholder="Saldo"
-                    />
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="password"
-                        name="passwordUser"
-                        id="passwordUser"
-                        placeholder="Senha"
-                    />
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="password"
-                        name="passwordConfirmation"
-                        id="passwordConfirmation"
-                        placeholder="Confirme sua Senha"
-                    />
-                    
-                    <div class="errorPassword d-none">
-                        
-                    </div>
+            <form class="w-100 d-flex flex-column gap2 bg-items mt-4 padding-2 rounded border-items" id="RegisterForm">
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="text"
+                    name="nameUser"
+                    id="nameUser"
+                    placeholder="Nome"
+                />
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="email"
+                    name="emailUser"
+                    id="emailUser"
+                    placeholder="Email"
+                />
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="number"
+                    name="saldoUser"
+                    id="saldoUser"
+                    placeholder="Saldo"
+                />
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="password"
+                    name="passwordUser"
+                    id="passwordUser"
+                    placeholder="Senha"
+                />
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="password"
+                    name="passwordConfirmation"
+                    id="passwordConfirmation"
+                    placeholder="Confirme sua Senha"
+                />
+                
+                <div class="errorPassword d-none">
+                </div>
 
-                    <div class="errorInputsNull d-none">
+                <div class="errorInputsNull d-none">
+                </div>
 
-                    </div>
-
-                    <button type="submit" class="bg-green px-5 py-4 w-fit border border-0 rounded">
-                        <p class="m-0 fs-4 fw-bold text-white">Cadastrar</p>
-                    </button>
-
-                </form>
-            </div>
-        </div>
-    </div>
+                <button type="submit" class="bg-green px-5 py-4 w-fit border border-0 rounded">
+                    <p class="m-0 fs-4 fw-bold text-white">Cadastrar</p>
+                </button>
+            </form>
+        </section>
+        
+    </main>
 
 </body>
 </html>

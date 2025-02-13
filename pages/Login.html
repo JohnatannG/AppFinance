@@ -18,46 +18,44 @@
 </head>
 <body>
 
-    <div class="bg-primary container-xxl vh-100 v-100 animate-fade">
+    <main class="bg-primary container-xxl vh-100 v-100 animate-fade">
         <div class="d-flex align-items-center gap-3 p-3">
             <img src="../assets/Logo.png" width="40" height="40"/>
             <h1 class="m-0 text-white fw-bold">Finance</h1>
         </div>
 
-        <div class="mt-2 p-4 w-register-login m-auto">
+        <section class="mt-2 p-4 w-register-login m-auto">
             <p class="m-0 text-lightgray fs-5">Não tem uma conta? <a href="../index.html">Cadastra-se</a></p>
+            
+            <form class="w-100 d-flex flex-column gap2 bg-items mt-4 padding-2 rounded border-items" id="LoginForm">
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="email"
+                    name="emailUser"
+                    id="emailLogin"
+                    placeholder="Email"
+                />
+                
+                <input
+                    class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
+                    type="password"
+                    name="passwordUser"
+                    id="passwordLogin"
+                    placeholder="Senha"
+                />
+                
+                <div class="errorPasswordInvalid d-none">
+                </div>
 
-            <div class="bg-items mt-4 padding-2 rounded border-items">
-                <form class="w-100 d-flex flex-column gap2" id="LoginForm">
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="email"
-                        name="emailUser"
-                        id="emailLogin"
-                        placeholder="Email"
-                    />
-                    
-                    <input
-                        class="bg-inputs w-100 p-4 border-items rounded fs-5 outline text-white"
-                        type="password"
-                        name="passwordUser"
-                        id="passwordLogin"
-                        placeholder="Senha"
-                    />
-                    
-                    <div class="errorPasswordInvalid d-none">
-                    </div>
+                <div class="errorInputsNull d-none">
+                </div>
 
-                    <div class="errorInputsNull d-none">
-                    </div>
-
-                    <button type="submit" class="bg-green px-5 py-4 w-fit border border-0 rounded">
-                        <p class="m-0 fs-4 fw-bold text-white">Fazer login</p>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+                <button type="submit" class="bg-green px-5 py-4 w-fit border border-0 rounded">
+                    <p class="m-0 fs-4 fw-bold text-white">Fazer login</p>
+                </button>
+            </form>
+        </section>
+    </main>
 
 </body>
 </html>
