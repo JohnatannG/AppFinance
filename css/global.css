@@ -27,11 +27,14 @@
   --border-items: #5151513f;
   --text-lightgray: #7f7f7f;
   --green: #10b981;
-  --red: #b91035;
+  --red: #EF4444;
 }
 
 body {
   background-color: var(--background-primary);
+}
+html{
+  scroll-behavior: smooth;
 }
 input::-webkit-inner-spin-button {
   appearance: none;
@@ -115,6 +118,16 @@ input::-webkit-inner-spin-button {
   box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
   z-index: 10;
 }
+.flex-column-reverse{
+  display: flex;
+  flex-direction: column-reverse;
+}
+.border-table.d-flex {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+}
 #Navbar {
   margin-top: 2rem;
   justify-content: space-between;
@@ -152,6 +165,13 @@ nav {
 @media screen and (max-width: 840px) {
 .w-register-login {
   width: 100%;
+}
+#MediaEBotoes{
+  margin: auto;  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+#adicionarDespesas{
+  margin: auto;
 }
 #toggleNavbar {
   display: flex;

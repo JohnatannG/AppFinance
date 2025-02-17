@@ -61,7 +61,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
             <p class="m-0 fs-4 text-white fw-medium">Despesas</p>
           </a>
-          <a href="#" class="d-flex align-items-center gap-3">
+          <a href="/pages/Receitas.html" class="d-flex align-items-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             <p class="m-0 fs-4 text-white fw-medium">Receitas</p>
           </a>
@@ -72,11 +72,6 @@
         </div>
 
         <div class="d-flex gap-5" id="NavbarList">
-          <a href="#" class="d-flex align-items-center gap-3">
-            <img src="../assets/Settings.svg" width="16" />
-            <p class="m-0 fs-4 text-white fw-medium">Configurações</p>
-          </a>
-
           <div
             id="LogOut"
             class="d-flex align-items-center gap-3 cursor-pointer"
@@ -147,47 +142,67 @@
       </section>
 
       <section id="formAdicionarDespesas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
-
         <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
           <p class="m-0 fs-2 fw-semibold">Adicione sua despesa</p>
-          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas"/>
+          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas" alt="Fechar modal"/>
         </div>
-
+      
         <form class="d-flex flex-column gap-4" id="modalFormDespesas">
-          
           <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">Nome</label>
+            <label for="nomeDespesas" class="m-0 fs-5">Nome</label>
             <input
               type="text"
-              name="text"
               id="nomeDespesas"
               class="p-3 bg-items border-items rounded outline text-white"
               placeholder="Ex: Aluguel, Internet, etc"
+              required
             />
           </div>
-
+      
           <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">valor</label>
+            <label for="pagamentoDespesas" class="m-0 fs-5">Forma de pagamento</label>
+            <select id="pagamentoDespesas" class="p-3 bg-items border-items rounded outline text-white" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Credito">Crédito</option>
+              <option value="Debito">Débito</option>
+              <option value="Pix">Pix</option>
+              <option value="Boleto">Boleto</option>
+            </select>
+          </div>
+      
+          <div class="d-flex flex-column gap-2">
+            <label for="descricaoDespesas" class="m-0 fs-5">Descrição</label>
+            <input
+              type="text"
+              id="descricaoDespesas"
+              class="p-3 bg-items border-items rounded outline text-white"
+              placeholder="Ex: Alimentação, etc"
+              required
+            />
+          </div>
+      
+          <div class="d-flex flex-column gap-2">
+            <label for="valorDespesas" class="m-0 fs-5">Valor</label>
             <input
               type="number"
-              name="number"
               id="valorDespesas"
               class="p-3 bg-items border-items rounded outline text-white"
               placeholder="R$ 0,00"
+              required
             />
           </div>
-
+      
           <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">data</label>
+            <label for="dataDespesas" class="m-0 fs-5">Data</label>
             <input
               type="date"
-              name="date"
               id="dataDespesas"
               class="p-3 bg-items border-items rounded outline text-white"
+              required
             />
           </div>
-
-          <button type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
+      
+          <button type="submit" class="bg-green px-4 py-3 w-fit border-0 rounded">
             <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
           </button>
         </form>
@@ -210,6 +225,28 @@
               id="nomeReceitas"
               class="p-3 bg-items border-items rounded outline text-white"
               placeholder="Ex: Salário, vendas, etc"
+            />
+          </div>
+
+          <div class="d-flex flex-column gap-2">
+            <label for="pagamentoReceitas" class="m-0 fs-5">Forma de pagamento</label>
+            <select id="pagamentoReceitas" class="p-3 bg-items border-items rounded outline text-white" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Credito">Crédito</option>
+              <option value="Debito">Débito</option>
+              <option value="Pix">Pix</option>
+              <option value="Boleto">Boleto</option>
+            </select>
+          </div>
+      
+          <div class="d-flex flex-column gap-2">
+            <label for="descricaoReceitas" class="m-0 fs-5">Descrição</label>
+            <input
+              type="text"
+              id="descricaoReceitas"
+              class="p-3 bg-items border-items rounded outline text-white"
+              placeholder="Ex: Aposentadoria, etc"
+              required
             />
           </div>
 
@@ -293,14 +330,13 @@
       <section id="table3ReceitasDespesas" class="w-100 h-auto d-flex flex-wrap justify-content-between mt-4 gap-4">
         
         <div id="tableWidth" class="d-flex flex-wrap flex-column gap-4">
-
           <div id="tableDespesas" class="bg-items border-items rounded w-100">
             <h2 class="text-center text-white p-3 fs-4 fw-semibold m-0 rounded-top">3 Últimas Despesas</h2>
             <table class="w-100 text-white text-center">
               <thead class="table-primary border">
                 <tr>
                   <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
-                  <th class="p-3 fs-5 text-white fw-semibold border-items">Descrição</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Data</th>
                   <th class="p-3 fs-5 text-white fw-semibold border-items">Valor</th>
                 </tr>
               </thead>
@@ -315,7 +351,7 @@
               <thead class="table-primary border">
                 <tr>
                   <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
-                  <th class="p-3 fs-5 text-white fw-semibold border-items">Descrição</th>
+                  <th class="p-3 fs-5 text-white fw-semibold border-items">Data</th>
                   <th class="p-3 fs-5 text-white fw-semibold border-items">Valor</th>
                 </tr>
               </thead>
@@ -323,7 +359,6 @@
               </tbody>
             </table>
           </div>
-
         </div>
 
         <div id="GrapichWidth" class="bg-items w-49 h-auto border-items rounded">

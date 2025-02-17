@@ -8,8 +8,8 @@ let Metas = JSON.parse(localStorage.getItem(`FormMetas_${userEmail}`)) || [];
 const qtdMetas = document.getElementById('qtdMetas');
 const LogOut = document.getElementById("LogOut");
 const fecharModalDespesas = document.getElementById("fecharModalDespesas");
-const modalFormDespesas = document.getElementById("modalFormDespesas");
 
+const modalFormDespesas = document.getElementById("modalFormDespesas");
 const modalFormReceitas = document.getElementById("modalFormReceitas");
 
 const fecharModalMetas = document.getElementById("fecharModalMetas");
@@ -17,7 +17,11 @@ const modalFormMetas = document.getElementById("modalFormMetas");
 
 var ctx = document.getElementsByClassName('chart')
 const valoresDespesas = Despesas.map(despesa => despesa.valorDespesas);
+const nomesDespesas = Despesas.map(despesa => despesa.nomeDespesas);
 const valoresReceitas = Receitas.map(receita => receita.valorReceitas);
+const nomesReceitas = Receitas.map(receita => receita.nomesReceitas);
+
+let labels = [...nomesDespesas, ...nomesReceitas];
 
 if (!Array.isArray(Despesas)) {
   Despesas = [];
@@ -35,10 +39,10 @@ window.addEventListener("load", () => {
   saldoAtualizado();
   mostrarSaldoDespesas();
   mostrarSaldoReceitas();
+  mostrarQuantidadeDeMetas()
   dadosNaTabelaReceitas();
   dadosNaTabelaDespesas();
   dadosNaTabelaMetas();
-  mostrarQuantidadeDeMetas()
 });
 
 /*MOSTRAR SALDO NO CARD*/
@@ -104,11 +108,15 @@ modalFormDespesas.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
   const nomeDespesas = document.getElementById("nomeDespesas").value;
+  const pagamentoDespesas = document.getElementById('pagamentoDespesas').value;
+  const descricaoDespesas = document.getElementById('descricaoDespesas').value;
   const valorDespesas = Number(document.getElementById("valorDespesas").value);
   const dataDespesas = document.getElementById("dataDespesas").value;
 
   const dadosDespesas = {
     nomeDespesas: nomeDespesas,
+    pagamentoDespesas: pagamentoDespesas,
+    descricaoDespesas: descricaoDespesas,
     valorDespesas: valorDespesas,
     dataDespesas: dataDespesas,
   };
@@ -161,11 +169,15 @@ modalFormReceitas.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
   const nomeReceitas = document.getElementById("nomeReceitas").value;
+  const pagamentoReceitas = document.getElementById('pagamentoReceitas').value;
+  const descricaoReceitas = document.getElementById('descricaoReceitas').value
   const valorReceitas = Number(document.getElementById("valorReceitas").value);
   const dataReceitas = document.getElementById("dataReceitas").value;
 
   const dadosReceitas = {
     nomeReceitas: nomeReceitas,
+    pagamentoReceitas: pagamentoReceitas,
+    descricaoReceitas: descricaoReceitas,
     valorReceitas: valorReceitas,
     dataReceitas: dataReceitas,
   };
@@ -299,16 +311,16 @@ function dadosNaTabelaReceitas() {
 }
 
 var chartGraph = new Chart(ctx, {
-  type: 'line',
+
+  type: 'bar',
   data: {
-    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov',
-      'Dez'],
+    labels: labels,
     datasets: [{
       label: 'Despesas',
       data: valoresDespesas,
       borderWidth: 2,
-      borderColor: '#b91035',
-      backgroundColor: '#b91035'
+      borderColor: '#EF4444',
+      backgroundColor: '#EF4444'
     },
     {
       label: 'Receitas',
