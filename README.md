@@ -7,7 +7,7 @@
 
 ## 🛠️ Tecnologias Utilizadas
     ● HTML
-    ● CSS 
+    ● Bootstrap
     ● JavaScript 
     ● Chart.js
 
