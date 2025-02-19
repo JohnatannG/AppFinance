@@ -1,6 +1,8 @@
 
 #   Finance
-    Um aplicativo simples e intuitivo para gerenciar suas finanças. Registre suas despesas, receitas e metas, acompanhe seus gastos por meio de gráficos e tenha um controle completo sobre suas finanças.
+    Um aplicativo simples e intuitivo para gerenciar suas finanças. 
+    Registre suas despesas, receitas e metas, acompanhe seus gastos por meio de gráficos 
+    e tenha um controle completo sobre suas finanças.
 
 
 ## 🛠️ Tecnologias Utilizadas
