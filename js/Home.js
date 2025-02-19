@@ -45,6 +45,7 @@ window.addEventListener("load", () => {
   dadosNaTabelaMetas();
 });
 
+
 /*MOSTRAR SALDO NO CARD*/
 const cardSaldoAtual = document.getElementById("cardSaldoAtual");
 const saldoFormatado = registrationFormData.saldoUser.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
@@ -136,15 +137,13 @@ modalFormDespesas.addEventListener("submit", function (evento) {
 
 /*MOSTRAR VALOR NO CARD DESPESA*/
 function mostrarSaldoDespesas() {
-  const valorFormDespesas = JSON.parse(
-    localStorage.getItem(`valorFormDespesas_${userEmail}`)
-  );
   const totalDespesas = document.getElementById("totalDespesas");
 
-  totalDespesas.textContent = `${valorFormDespesas.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  })}`;
+  const total = Despesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
+
+  const saldoFormatado = total.toLocaleString("pt-br", {style: "currency", currency: "BRL",})
+  console.log(saldoFormatado)
+  totalDespesas.textContent = `${saldoFormatado}`;
 }
 
 
@@ -236,10 +235,10 @@ modalFormMetas.addEventListener("submit", function (evento) {
 
 
 function saldoAtualizado() {
-  const valorFormReceitas = JSON.parse(localStorage.getItem(`valorFormReceitas_${userEmail}`)) || 0;
-  const valorFormDespesas = JSON.parse(localStorage.getItem(`valorFormDespesas_${userEmail}`)) || 0;
+  const valorDespesas = Despesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
+  const valorReceitas = Receitas.reduce((acc, receita) => acc + receita.valorReceitas, 0);
 
-  let valorAtualizado = registrationFormData.saldoUser + valorFormReceitas - valorFormDespesas;
+  let valorAtualizado = valorReceitas - valorDespesas ;
 
   localStorage.setItem(`saldoAtualizado_${userEmail}`, JSON.stringify(valorAtualizado));
 
@@ -248,10 +247,12 @@ function saldoAtualizado() {
 }
 
 function mostrarSaldoReceitas() {
-  const valorFormReceitas = JSON.parse(localStorage.getItem(`valorFormReceitas_${userEmail}`)) || 0;
   const totalReceitas = document.getElementById("totalReceitas");
 
-  totalReceitas.textContent = `${valorFormReceitas.toLocaleString("pt-br", {style: "currency", currency: "BRL",})}`;
+  const total = Receitas.reduce((acc, receita) => acc + receita.valorReceitas, 0);
+  const saldoFormatado = total.toLocaleString("pt-br", {style: "currency", currency: "BRL",})
+
+  totalReceitas.textContent = `${saldoFormatado}`;
 }
 
 function dadosNaTabelaDespesas() {
@@ -265,19 +266,19 @@ function dadosNaTabelaDespesas() {
     const tr = document.createElement("tr");
 
     const tdNome = document.createElement("td");
-    const tdDescricao = document.createElement("td");
+    const tdData = document.createElement("td");
     const tdValor = document.createElement("td");
 
     tdNome.classList.add("border-table");
-    tdDescricao.classList.add("border-table");
+    tdData.classList.add("border-table");
     tdValor.classList.add("border-table");
     tdValor.classList.add("text-red");
 
     tdNome.textContent = despesa.nomeDespesas || "Nome não informado";
     tdValor.textContent = despesa.valorDespesas.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${despesa.valorDespesas.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
-    tdDescricao.textContent = despesa.dataDespesas || "Sem descrição";
+    tdData.textContent = despesa.dataDespesas.split('-').reverse().join('/') || "Sem descrição";
 
-    tr.append(tdNome, tdDescricao, tdValor);
+    tr.append(tdNome, tdData, tdValor);
     tBodyDespesas.append(tr);
   });
 }
@@ -293,26 +294,26 @@ function dadosNaTabelaReceitas() {
     const tr = document.createElement("tr");
 
     const tdNome = document.createElement("td");
-    const tdDescricao = document.createElement("td");
+    const tdData = document.createElement("td");
     const tdValor = document.createElement("td");
 
     tdNome.classList.add("border-table");
-    tdDescricao.classList.add("border-table");
+    tdData.classList.add("border-table");
     tdValor.classList.add("border-table");
     tdValor.classList.add("text-green");
 
     tdNome.innerHTML = receita.nomeReceitas || "Nome não informado";
     tdValor.innerHTML = receita.valorReceitas.toLocaleString("pt-br", { style: "currency", currency: "BRL", }) ? `${receita.valorReceitas.toLocaleString("pt-br", { style: "currency", currency: "BRL", })}` : "Valor não informado";
-    tdDescricao.innerHTML = receita.dataReceitas || "Sem descrição";
+    tdData.innerHTML = receita.dataReceitas.split('-').reverse().join('/') || "Sem descrição";
 
-    tr.append(tdNome, tdDescricao, tdValor);
+    tr.append(tdNome, tdData, tdValor);
     tBodyReceitas.append(tr);
   });
 }
 
 var chartGraph = new Chart(ctx, {
 
-  type: 'bar',
+  type: 'line',
   data: {
     labels: labels,
     datasets: [{

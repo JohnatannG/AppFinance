@@ -5,9 +5,12 @@ let pageDespesas = JSON.parse(localStorage.getItem(`FormDespesas_${userEmail}`))
 const modalFormDespesas = document.getElementById("modalFormDespesas");
 
 const mediaDiariaGastosDespesas = document.getElementById('mediaDiariaGastosDespesas');
-const pesquisarDespesas = document.getElementById('pesquisarDespesas')
+const pesquisarDespesas = document.getElementById('pesquisarDespesas');
 const totalDespesas = pageDespesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
 
+if (!Array.isArray(pageDespesas)) {
+    pageDespesas = [];
+}
 
 window.addEventListener("load", () => {
     mostrarMediaDeGastos();
@@ -60,12 +63,12 @@ modalFormDespesas.addEventListener("submit", function (evento) {
     localStorage.setItem(`FormDespesas_${userEmail}`, JSON.stringify(pageDespesas));
     modalFormDespesas.reset();
     dadosNaTabelaDaPaginaDespesas();
-    saldoAtualizado();
+    mostrarMediaDeGastos();
 }); 
 
 function mostrarMediaDeGastos(){
-    mediaDespesas = totalDespesas / pageDespesas.length
-    mediaDiariaGastosDespesas.textContent = mediaDespesas.toLocaleString("pt-br", {style: "currency", currency: "BRL",}) || 0
+    mediaDespesas = totalDespesas / pageDespesas.length || 0;
+    mediaDiariaGastosDespesas.textContent = 0 || mediaDespesas.toLocaleString("pt-br", {style: "currency", currency: "BRL",});
 };
 
 pesquisarDespesas.addEventListener('keyup', (e) => {
@@ -114,7 +117,16 @@ function dadosNaTabelaDaPaginaDespesas(listaDespesas) {
         tdPagamento.classList.add("border-table");
         acoesSvg.classList.add("border-table");
         
-        tdData.textContent = despesa.dataDespesas;
+        pen.addEventListener('click', function(){
+            openModalEditarDesepesas(despesa)
+        })
+
+        x.addEventListener('click', function(){
+            const index = pageDespesas.findIndex(item => item === despesa);
+            removeDespesas(index);
+        });
+
+        tdData.textContent = despesa.dataDespesas.split('-').reverse().join('/');
         tdDescricao.textContent = despesa.descricaoDespesas;
         tdValor.textContent = despesa.valorDespesas.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
         tdPagamento.textContent = despesa.pagamentoDespesas;
@@ -122,12 +134,6 @@ function dadosNaTabelaDaPaginaDespesas(listaDespesas) {
         acoesSvg.append(pen, x)
         tr.append(tdData, tdDescricao, tdValor, tdPagamento, acoesSvg );
         tBodyTodasDespesas.append(tr);
-
-
-        pen.addEventListener('click', function(){
-            openModalEditarDesepesas(despesa)
-        })
-
     });
 }
 
@@ -143,5 +149,16 @@ function openModalEditarDesepesas(despesa){
     formAdicionarDespesas.classList.add("d-flex");
     
     modalFormDespesas.setAttribute("data-editando", true);
-    modalFormDespesas.setAttribute("data-index", despesa.indexOf(despesa));
+    const index = pageDespesas.findIndex(item => item === despesa);
+    modalFormDespesas.setAttribute("data-index", index);    
+
+}
+
+function removeDespesas(index) {
+    pageDespesas.splice(index, 1);
+
+    localStorage.setItem(`FormDespesas_${userEmail}`, JSON.stringify(pageDespesas));
+
+    dadosNaTabelaDaPaginaDespesas(pageDespesas);
+    mostrarMediaDeGastos();
 }
