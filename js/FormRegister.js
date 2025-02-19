@@ -5,14 +5,12 @@ RegisterForm.addEventListener('submit', function(evento){
 
     const nameUser = document.getElementById('nameUser').value;
     const emailUser = document.getElementById('emailUser').value;
-    const saldoUser = Number(document.getElementById('saldoUser').value);
     const passwordUser = document.getElementById('passwordUser').value;
     const passwordConfirmation = document.getElementById('passwordConfirmation').value;
 
     const registrationFormData = {
         nameUser: nameUser,
         emailUser: emailUser,
-        saldoUser: saldoUser,
         passwordUser: passwordUser,
     }
     
