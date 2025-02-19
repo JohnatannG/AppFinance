@@ -109,77 +109,77 @@
                 </button>
             </div>
 
-            <section id="formAdicionarDespesas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
-    
-              <form class="d-flex flex-column gap-4" id="modalFormDespesas">
-    
-              <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
-                <p class="m-0 fs-2 fw-semibold">Adicione sua despesa</p>
-                <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas" alt="Fechar modal"/>
-              </div>
-    
-                <div class="d-flex flex-column gap-2">
-                  <label for="nomeDespesas" class="m-0 fs-5">Nome</label>
-                  <input
-                    type="text"
-                    id="nomeDespesas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="Ex: Aluguel, Internet, etc"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="pagamentoDespesas" class="m-0 fs-5">Forma de pagamento</label>
-                  <select id="pagamentoDespesas" class="p-3 bg-items border-items rounded outline text-white" required>
-                    <option value="" disabled selected>Selecione uma opção</option>
-                    <option value="Credito">Crédito</option>
-                    <option value="Debito">Débito</option>
-                    <option value="Pix">Pix</option>
-                    <option value="Boleto">Boleto</option>
-                  </select>
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="descricaoDespesas" class="m-0 fs-5">Descrição</label>
-                  <input
-                    type="text"
-                    id="descricaoDespesas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="Ex: Alimentação, etc"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="valorDespesas" class="m-0 fs-5">Valor</label>
-                  <input
-                    type="number"
-                    id="valorDespesas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="R$ 0,00"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="dataDespesas" class="m-0 fs-5">Data</label>
-                  <input
-                    type="date"
-                    id="dataDespesas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    required
-                  />
-                </div>
-            
-                <button type="submit" class="bg-green px-4 py-3 w-fit border-0 rounded">
-                  <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
-                </button>
-    
-              </form>
-            </section>
         </section>
 
+        <section id="formAdicionarDespesas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+          <form class="d-flex flex-column gap-4" id="modalFormDespesas">
+
+          <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
+            <p class="m-0 fs-2 fw-semibold">Adicione sua despesa</p>
+            <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalDespesas" alt="Fechar modal"/>
+          </div>
+
+            <div class="d-flex flex-column gap-2">
+              <label for="nomeDespesas" class="m-0 fs-5">Nome</label>
+              <input
+                type="text"
+                id="nomeDespesas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="Ex: Aluguel, Internet, etc"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="pagamentoDespesas" class="m-0 fs-5">Forma de pagamento</label>
+              <select id="pagamentoDespesas" class="p-3 bg-items border-items rounded outline text-white" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="Credito">Crédito</option>
+                <option value="Debito">Débito</option>
+                <option value="Pix">Pix</option>
+                <option value="Boleto">Boleto</option>
+              </select>
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="descricaoDespesas" class="m-0 fs-5">Descrição</label>
+              <input
+                type="text"
+                id="descricaoDespesas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="Ex: Alimentação, etc"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="valorDespesas" class="m-0 fs-5">Valor</label>
+              <input
+                type="number"
+                id="valorDespesas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="R$ 0,00"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="dataDespesas" class="m-0 fs-5">Data</label>
+              <input
+                type="date"
+                id="dataDespesas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                required
+              />
+            </div>
+        
+            <button type="submit" class="bg-green px-4 py-3 w-fit border-0 rounded">
+              <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
+            </button>
+
+          </form>
+        </section>
 
         <section id="tabelaTodasDespesas" class="bg-items text-white border-items rounded mt-4 overflow-auto">
             <table class="bg-items rounded w-100 text-center">
