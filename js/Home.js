@@ -21,6 +21,11 @@ const nomesDespesas = Despesas.map(despesa => despesa.nomeDespesas);
 const valoresReceitas = Receitas.map(receita => receita.valorReceitas);
 const nomesReceitas = Receitas.map(receita => receita.nomesReceitas);
 
+const valorDespesas = Despesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
+const valorReceitas = Receitas.reduce((acc, receita) => acc + receita.valorReceitas, 0);
+
+let valorAtualizado = valorReceitas - valorDespesas ;
+
 let labels = [...nomesDespesas, ...nomesReceitas];
 
 if (!Array.isArray(Despesas)) {
@@ -48,8 +53,7 @@ window.addEventListener("load", () => {
 
 /*MOSTRAR SALDO NO CARD*/
 const cardSaldoAtual = document.getElementById("cardSaldoAtual");
-const saldoFormatado = registrationFormData.saldoUser.toLocaleString("pt-br", { style: "currency", currency: "BRL", });
-cardSaldoAtual.innerText = `${saldoFormatado}`;
+cardSaldoAtual.innerText = `${valorAtualizado}`;
 
 /*ABRIR MODAL SIDEBAR MOBILE*/
 document.addEventListener("DOMContentLoaded", function () {
@@ -142,7 +146,6 @@ function mostrarSaldoDespesas() {
   const total = Despesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
 
   const saldoFormatado = total.toLocaleString("pt-br", {style: "currency", currency: "BRL",})
-  console.log(saldoFormatado)
   totalDespesas.textContent = `${saldoFormatado}`;
 }
 
@@ -235,11 +238,6 @@ modalFormMetas.addEventListener("submit", function (evento) {
 
 
 function saldoAtualizado() {
-  const valorDespesas = Despesas.reduce((acc, despesa) => acc + despesa.valorDespesas, 0);
-  const valorReceitas = Receitas.reduce((acc, receita) => acc + receita.valorReceitas, 0);
-
-  let valorAtualizado = valorReceitas - valorDespesas ;
-
   localStorage.setItem(`saldoAtualizado_${userEmail}`, JSON.stringify(valorAtualizado));
 
   const saldoFormatado = valorAtualizado.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
