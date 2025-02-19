@@ -12,11 +12,42 @@ if (!Array.isArray(pageReceitas)) {
     pageReceitas  = [];
 }
 
-
 window.addEventListener("load", () => {
     dadosNaTabelaDaPaginaReceitas(pageReceitas);
     mostrarMediaDeGanhos()
     
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navbar = document.getElementById("Navbar");
+    const toggleButton = document.getElementById("toggleNavbar");
+  
+    toggleButton.addEventListener("click", function () {
+      navbar.classList.add('open')
+      navbar.classList.remove("close");
+    });
+  });
+  
+  /*FECHAR MODAL SIDEBAR MOBILE*/
+  const fecharNavbar = document.getElementById('fecharNavbar').addEventListener('click', function(){
+      const navbar = document.getElementById("Navbar");
+      navbar.classList.remove('open')
+      navbar.classList.add("close");
+  });
+
+LogOut.addEventListener("click", function () {
+    const logOutModal = document.getElementById("logOutModal");
+    logOutModal.classList.remove("d-none");
+    logOutModal.classList.add("d-flex");
+    logOutModal.classList.add("animate-fade");
+});
+  
+  const modalSair = document.getElementById("modalSair").addEventListener("click", function () {
+    window.location.href = "https://app-finance-flame.vercel.app/pages/Login.html";
+});
+  const modalCancelar = document.getElementById("modalCancelar").addEventListener("click", function () {
+    logOutModal.classList.remove("d-flex");
+    logOutModal.classList.add("d-none");
 });
 
 const adicionarReceitas = document.getElementById("adicionarReceitas").addEventListener("click", function (){

@@ -31,7 +31,7 @@
     <title>Finance | Receitas</title>
 </head>
 <body>
-    <main class="bg-primary container-xxl vh-100 v-100 px-4">
+    <main class="bg-primary container-xxl vh-100 v-100 px-4 overflow-hidden">
 
         <header class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3 mt-4">
@@ -76,96 +76,114 @@
             </div>
         </nav>
 
-        <section id="MediaEBotoes" class="d-flex justify-content-between mt-5">
+        <section id="logOutModal" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-white p-4 rounded shadow-overlay">
 
-            <section id="MediaEBotoes" class="d-flex gap-4">
-                <div class="bg-items w-fit h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
-                    <p class="m-0 fs-4">Média de todos os ganhos</p>
-                    <p class="m-0 fs-3 fw-medium text-green" id="mediaDiariaGanhosReceitas">R$ 0</p>
-                </div>
-                <input type="search" id="pesquisarReceitas" class="h-fit bg-items border-items text-white p-3 px-4 fs-5 outline rounded" placeholder="Filtrar por categoria...">
-            </section>
-
-            <button id="adicionarReceitas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded text-white p-3 px-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/>
-                </svg>
-
-                <p class="m-0">Adicionar nova receita</p>
+          <p class="m-0 fs-3">Tem certeza que deseja sair?</p>
+          <div class="d-flex justify-content-center gap-2 mt-4">
+            <button class="bg-transparent border py-3 px-5 rounded">
+              <p class="m-0 fs-4" id="modalSair">Sair</p>
             </button>
-
-            <section id="formAdicionarReceitas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
-
-              <form class="d-flex flex-column gap-4" id="modalFormReceitas">
-
-              <div class="tittleReceitas mb-5 d-flex align-items-center justify-content-between">
-                <p class="m-0 fs-2 fw-semibold">Adicione sua Receitas</p>
-                <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalReceitas" alt="Fechar modal"/>
-              </div>
-
-                <div class="d-flex flex-column gap-2">
-                  <label for="nomeReceitas" class="m-0 fs-5">Nome</label>
-                  <input
-                    type="text"
-                    id="nomeReceitas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="Ex: Aluguel, Internet, etc"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="pagamentoReceitas" class="m-0 fs-5">Forma de pagamento</label>
-                  <select id="pagamentoReceitas" class="p-3 bg-items border-items rounded outline text-white" required>
-                    <option value="" disabled selected>Selecione uma opção</option>
-                    <option value="Credito">Crédito</option>
-                    <option value="Debito">Débito</option>
-                    <option value="Pix">Pix</option>
-                    <option value="Boleto">Boleto</option>
-                  </select>
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="descricaoReceitas" class="m-0 fs-5">Descrição</label>
-                  <input
-                    type="text"
-                    id="descricaoReceitas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="Ex: Alimentação, etc"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="valorReceitas" class="m-0 fs-5">Valor</label>
-                  <input
-                    type="number"
-                    id="valorReceitas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    placeholder="R$ 0,00"
-                    required
-                  />
-                </div>
-            
-                <div class="d-flex flex-column gap-2">
-                  <label for="dataReceitas" class="m-0 fs-5">Data</label>
-                  <input
-                    type="date"
-                    id="dataReceitas"
-                    class="p-3 bg-items border-items rounded outline text-white"
-                    required
-                  />
-                </div>
-            
-                <button type="submit" class="bg-green px-4 py-3 w-fit border-0 rounded">
-                  <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
-                </button>
-
-              </form>
-            </section>
-            
+            <button class="bg-items text-white border py-3 px-4 rounded">
+              <p class="m-0 fs-4" id="modalCancelar">Cancelar</p>
+            </button>
+          </div>
+  
         </section>
 
-        <section id="tabelaTodasReceitas" class="bg-items text-white border-items rounded mt-4">
+        <section class="flexItens justify-content-between mt-5">
+
+          <div id="MediaEBotoes" class="w-100 flexItens justify-content-between gap-4">
+      
+              <div class="flexItens gap-4">
+                  <div class="bg-items w-fit h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
+                      <p class="m-0 fs-4">Média de todos os ganhos</p>
+                      <p class="m-0 fs-3 fw-medium text-green" id="mediaDiariaGanhosReceitas">R$ 0</p>
+                  </div>
+                  <input type="search" id="pesquisarReceitas" class="h-fit bg-items border-items text-white p-3 px-4 fs-5 outline rounded" placeholder="Filtrar por categoria...">
+              </div>
+      
+              <button id="adicionarReceitas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded text-white p-3 px-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                      <path d="M5 12h14"/>
+                      <path d="M12 5v14"/>
+                  </svg>
+                  <p class="m-0">Adicionar nova receita</p>
+              </button>
+          </div>
+      
+        </section>
+      
+        <section id="formAdicionarReceitas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+          <form class="d-flex flex-column gap-4" id="modalFormReceitas">
+
+          <div class="tittleReceitas mb-5 d-flex align-items-center justify-content-between">
+            <p class="m-0 fs-2 fw-semibold">Adicione sua Receitas</p>
+            <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalReceitas" alt="Fechar modal"/>
+          </div>
+
+            <div class="d-flex flex-column gap-2">
+              <label for="nomeReceitas" class="m-0 fs-5">Nome</label>
+              <input
+                type="text"
+                id="nomeReceitas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="Ex: Aluguel, Internet, etc"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="pagamentoReceitas" class="m-0 fs-5">Forma de pagamento</label>
+              <select id="pagamentoReceitas" class="p-3 bg-items border-items rounded outline text-white" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="Credito">Crédito</option>
+                <option value="Debito">Débito</option>
+                <option value="Pix">Pix</option>
+                <option value="Boleto">Boleto</option>
+              </select>
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="descricaoReceitas" class="m-0 fs-5">Descrição</label>
+              <input
+                type="text"
+                id="descricaoReceitas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="Ex: Alimentação, etc"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="valorReceitas" class="m-0 fs-5">Valor</label>
+              <input
+                type="number"
+                id="valorReceitas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                placeholder="R$ 0,00"
+                required
+              />
+            </div>
+        
+            <div class="d-flex flex-column gap-2">
+              <label for="dataReceitas" class="m-0 fs-5">Data</label>
+              <input
+                type="date"
+                id="dataReceitas"
+                class="p-3 bg-items border-items rounded outline text-white"
+                required
+              />
+            </div>
+        
+            <button type="submit" class="bg-green px-4 py-3 w-fit border-0 rounded">
+              <p class="m-0 fs-5 fw-medium text-white">Cadastrar</p>
+            </button>
+
+          </form>
+        </section>
+
+        <section id="tabelaTodasReceitas" class="bg-items text-white border-items rounded mt-4 overflow-auto">
             <table class="bg-items rounded w-100 text-center">
               <thead class="table-primary border">
                 <tr>

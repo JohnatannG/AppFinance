@@ -33,17 +33,17 @@
   </head>
 <body>
     
-    <main class="bg-primary container-xxl vh-100 v-100 px-4">
+    <main class="bg-primary container-xxl vh-100 v-100 px-4 overflow-hidden">
 
-    <header class="d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center gap-3 mt-4">
-          <img src="../assets/Logo.png" width="40" height="40" />
-          <h1 class="m-0 text-white fw-bold">Finance</h1>
-        </div>
+      <header class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-3 mt-4">
+            <img src="../assets/Logo.png" width="40" height="40" />
+            <h1 class="m-0 text-white fw-bold">Finance</h1>
+          </div>
 
-        <button id="toggleNavbar" class="bg-primary">
-          <img src="../assets/Menu.svg" width="30" />
-        </button>
+          <button id="toggleNavbar" class="bg-primary">
+            <img src="../assets/Menu.svg" width="30" />
+          </button>
       </header>
 
       <nav id="Navbar" class="pb-3 d-flex gap-5">
@@ -82,102 +82,117 @@
         </div>
       </nav>
 
-      <section class="d-flex justify-content-between mt-5">
+      <section id="logOutModal" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-white p-4 rounded shadow-overlay">
 
-        <section class="d-flex gap-4">
-            <div class="bg-items w-fit h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
-                <p class="m-0 fs-4">Quantidade de metas</p>
-                <p class="m-0 fs-3 fw-medium" id="quantidadeDeMetas">0</p>
-            </div>
-            <input type="search" id="pesquisarMetas" class="h-fit bg-items border-items text-white p-3 px-4 fs-5 outline rounded" placeholder="Filtrar por categoria...">
-        </section>
-
-        <button id="adicionarMetas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded text-white p-3 px-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/>
-            </svg>
-
-            <p class="m-0">Adicionar nova meta</p>
-        </button>
-
-        <section id="formAdicionarMetas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
-
-          <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
-          <p class="m-0 fs-2 fw-semibold">Adicione sua meta</p>
-          <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalMetas"/>
+        <p class="m-0 fs-3">Tem certeza que deseja sair?</p>
+        <div class="d-flex justify-content-center gap-2 mt-4">
+          <button class="bg-transparent border py-3 px-5 rounded">
+            <p class="m-0 fs-4" id="modalSair">Sair</p>
+          </button>
+          <button class="bg-items text-white border py-3 px-4 rounded">
+            <p class="m-0 fs-4" id="modalCancelar">Cancelar</p>
+          </button>
         </div>
 
-        <form class="d-flex flex-column gap-4" id="modalFormMetas">
-
-          <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">Nome</label>
-            <input
-              type="date"
-              name="text"
-              id="dataMetas"
-              class="p-3 bg-items border-items rounded outline text-white"
-              placeholder="Ex: Carro, Viagem, etc"
-            />
-          </div>
-
-          <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">Nome</label>
-            <input
-              type="text"
-              name="text"
-              id="nomeMetas"
-              class="p-3 bg-items border-items rounded outline text-white"
-              placeholder="Ex: Carro, Viagem, etc"
-            />
-          </div>
-
-          <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">Objetivo</label>
-            <input
-              type="number"
-              name="number"
-              id="valorObjetivo"
-              class="p-3 bg-items border-items rounded outline text-white"
-              placeholder="Ex: R$ 5000,00"
-            />
-          </div>
-
-          <div class="d-flex flex-column gap-2">
-            <label class="m-0 fs-5">Investido</label>
-            <input
-              type="number"
-              name="number"
-              id="valorInvestido"
-              class="p-3 bg-items border-items rounded outline text-white"
-              placeholder="Ex: R$ 2500,00"
-            />
-          </div>
-
-          <button
-            type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
-            <p class="m-0 fs-5 fw-medium text-white">Adicionar</p>
-          </button>
-        </form>
-        </section>
-
-        
       </section>
 
-      <section id="tabelaTodasMetas" class="bg-items text-white border-items rounded mt-4">
-        <table class="bg-items rounded w-100 text-center">
-          <thead class="table-primary border">
-            <tr>
-              <th class="p-3 fs-5 text-white fw-semibold border-items">Data</th>
-              <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
-              <th class="p-3 fs-5 text-white fw-semibold border-items">Objetivo (R$)</th>
-              <th class="p-3 fs-5 text-white fw-semibold border-items">Valor investido</th>
-              <th class="p-3 fs-5 text-white fw-semibold border-items">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="tBodyTodasMetas">
-            
-          </tbody>
-        </table>
-    </section>
+      <section class="flexItens justify-content-between mt-5">
+        <div id="MetasEBotoes" class="w-100 flexItens justify-content-between gap-4">
+            <div class="flexItens gap-4">
+                <div class="bg-items w-fit h-fit text-white border-items px-4 py-3 d-flex flex-column justify-content-center gap-3 rounded">
+                    <p class="m-0 fs-4">Quantidade de metas</p>
+                    <p class="m-0 fs-3 fw-medium" id="quantidadeDeMetas">0</p>
+                </div>
+                <input type="search" id="pesquisarMetas" class="h-fit bg-items border-items text-white p-3 px-4 fs-5 outline rounded" placeholder="Filtrar por categoria...">
+            </div>
+
+            <button id="adicionarMetas" class="w-fit h-fit d-flex align-items-center gap-3 bg-items border-items rounded text-white p-3 px-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                    <path d="M5 12h14"/>
+                    <path d="M12 5v14"/>
+                </svg>
+                <p class="m-0">Adicionar nova meta</p>
+            </button>
+        </div>
+      </section>
+      
+      <section id="formAdicionarMetas" class="position-absolute top-50 start-50 translate-middle z-3 d-none flex-column justify-content-center bg-primary border-items text-white p-4 rounded shadow-overlay w-50 animate-fade">
+
+        <div class="tittleDespesas mb-5 d-flex align-items-center justify-content-between">
+        <p class="m-0 fs-2 fw-semibold">Adicione sua meta</p>
+        <img src="../assets/X.svg" class="cursor-pointer" id="fecharModalMetas"/>
+      </div>
+
+      <form class="d-flex flex-column gap-4" id="modalFormMetas">
+
+        <div class="d-flex flex-column gap-2">
+          <label class="m-0 fs-5">Nome</label>
+          <input
+            type="date"
+            name="text"
+            id="dataMetas"
+            class="p-3 bg-items border-items rounded outline text-white"
+            placeholder="Ex: Carro, Viagem, etc"
+          />
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+          <label class="m-0 fs-5">Nome</label>
+          <input
+            type="text"
+            name="text"
+            id="nomeMetas"
+            class="p-3 bg-items border-items rounded outline text-white"
+            placeholder="Ex: Carro, Viagem, etc"
+          />
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+          <label class="m-0 fs-5">Objetivo</label>
+          <input
+            type="number"
+            name="number"
+            id="valorObjetivo"
+            class="p-3 bg-items border-items rounded outline text-white"
+            placeholder="Ex: R$ 5000,00"
+          />
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+          <label class="m-0 fs-5">Investido</label>
+          <input
+            type="number"
+            name="number"
+            id="valorInvestido"
+            class="p-3 bg-items border-items rounded outline text-white"
+            placeholder="Ex: R$ 2500,00"
+          />
+        </div>
+
+        <button
+          type="submit" class="bg-green px-4 py-3 w-fit border border-0 rounded">
+          <p class="m-0 fs-5 fw-medium text-white">Adicionar</p>
+        </button>
+      </form>
+      </section>
+
+      <section id="tabelaTodasMetas" class="bg-items text-white border-items rounded mt-4 overflow-auto">
+          <table class="bg-items rounded w-100 text-center">
+            <thead class="table-primary border">
+              <tr>
+                <th class="p-3 fs-5 text-white fw-semibold border-items">Data</th>
+                <th class="p-3 fs-5 text-white fw-semibold border-items">Nome</th>
+                <th class="p-3 fs-5 text-white fw-semibold border-items">Objetivo (R$)</th>
+                <th class="p-3 fs-5 text-white fw-semibold border-items">Valor investido</th>
+                <th class="p-3 fs-5 text-white fw-semibold border-items">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tBodyTodasMetas">
+              
+            </tbody>
+          </table>
+      </section>
+
     </main>
 
 </body>

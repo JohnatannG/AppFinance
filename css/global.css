@@ -160,18 +160,21 @@ nav {
   font-size: 1.3rem;
 }
 
-
+.flexItens{
+  display: flex;
+}
 
 @media screen and (max-width: 840px) {
 .w-register-login {
   width: 100%;
 }
+.flexItens{
+  justify-content: center;
+  flex-direction: column;
+}
 #MediaEBotoes{
   margin: auto;  flex-direction: column;
   margin-bottom: 1.5rem;
-}
-#adicionarDespesas{
-  margin: auto;
 }
 #toggleNavbar {
   display: flex;
